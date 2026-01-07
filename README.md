@@ -1,2 +1,2 @@
 # online-shopping-cart
-This project is an online shopping cart application that allows users to browse products, compare items, and manage their cart efficiently. A 
+An online shopping cart system featuring voice-controlled interactions and a product comparison-based cart to enhance user experinence and support smarter purchasing decission. 
