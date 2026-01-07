@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Budget Cart 💖</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffe5ec, #ffd1dc);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #ff66a3;
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      margin: 30px;
+    }
+
+    .product {
+      display: inline-block;
+      background: white;
+      border-radius: 20px;
+      padding: 15px;
+      width: 220px;
+      margin: 15px;
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    button {
+      background: #ff66a3;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: #ff3385;
+    }
+
+    .cart {
+      margin-top: 40px;
+      background: #fff0f5;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+    }
+
+    #voiceBtn {
+      background: #ff85c1;
+      margin-top: 15px;
+      padding: 12px 18px;
+      border-radius: 50px;
+    }
+
+    #status {
+      color: #ff3385;
+      margin-top: 10px;
+    }
+
+    .suggestions, .comparison {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 25px;
+      box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ffc0cb;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ff66a3;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Smart Budget Cart 💖</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">Cart</a>
+      <a href="#">Compare</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Shop Smart 🛍️</h2>
+
+    <div class="product">
+      <img src="running shoes.jpg" alt="Shoes">
+      <h3>Running Shoes</h3>
+      <p>₹1200</p>
+      <button onclick="addToCart('Running Shoes', 1200, 'Durable, Lightweight')">Add to Cart</button>
+      <button onclick="addToCompare('Running Shoes', 1200, 'Durable, Lightweight')">Compare</button>
+    </div>
+
+    <div class="product">
+      <img src="wireless headphones.jpg" alt="Headphones">
+      <h3>Wireless Headphones</h3>
+      <p>₹800</p>
+      <button onclick="addToCart('Wireless Headphones', 800, 'Noise Cancel, Bluetooth')">Add to Cart</button>
+      <button onclick="addToCompare('Wireless Headphones', 800, 'Noise Cancel, Bluetooth')">Compare</button>
+    </div>
+
+    <div class="product">
+      <img src="smart watch.jpg" alt="Watch">
+      <h3>Smart Watch</h3>
+      <p>₹1500</p>
+      <button onclick="addToCart('Smart Watch', 1500, 'Waterproof, Heart Rate')">Add to Cart</button>
+      <button onclick="addToCompare('Smart Watch', 1500, 'Waterproof, Heart Rate')">Compare</button>
+    </div>
+
+    <div class="product">
+      <img src="earbuds.jpg" alt="Earbuds">
+      <h3>Bluetooth Earbuds</h3>
+      <p>₹1000</p>
+      <button onclick="addToCart('Bluetooth Earbuds', 1000, 'Compact, Long Battery')">Add to Cart</button>
+      <button onclick="addToCompare('Bluetooth Earbuds', 1000, 'Compact, Long Battery')">Compare</button>
+    </div>
+
+    <!-- CART SECTION -->
+    <div class="cart" id="cart">
+      <h2>Your Cart 🛒</h2>
+      <ul id="cartItems"></ul>
+      <p><strong>Total Items:</strong> <span id="totalItems">0</span></p>
+      <p><strong>Total Price:</stron

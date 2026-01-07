@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login | Smart Budget Cart</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ff66b3; /* Pink background for the whole page */
+}
+
+header {
+    background: #ff3385;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffe6f0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-container {
+    max-width: 400px;
+    background: #ffffff; /* White card for contrast */
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #ff3385;
+    margin-bottom: 25px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ff66b3;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #ff66b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background: #ff3385;
+    transform: scale(1.05);
+}
+
+.login-container a {
+    display: block;
+    margin-top: 15px;
+    color: #ff3385;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background:#ff3385;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Smart Budget Cart</h1>
+<nav>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/index.html">Home</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/product.html">Products</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/cart.html">Cart</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/about.html">About</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/contact.html">Contact</a>
+</nav>
+</header>
+
+<div class="container">
+<div class="login-container">
+<h2>Login</h2>
+<form action="/login" method="POST">
+<input type="text" name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
+<a href="/register">Don't have an account? Register</a>
+</div>
+</div>
+
+<footer>
+<p>© 2025 Smart Budget Cart. All rights reserved.</p>
+</footer>
+</body>
+</html>

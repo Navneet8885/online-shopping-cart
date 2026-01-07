@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Products | Smart Budget Cart</title>
+<style>
+/* Pink-White Theme Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #ffe6f0;
+    color: #333;
+}
+nav {
+    background: #ff66b3;
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 2px;
+}
+nav a:hover {
+    background: #ff3385;
+}
+h2 {
+    color: #ff3385;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+.product-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+.product-card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+button {
+    background: #ff66b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+button:hover {
+    background: #ff3385;
+}
+#cart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff0f5;
+    padding: 20px;
+    border-radius: 12px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #ffcce0;
+}
+.smart-suggestion {
+    background: #ffe6f0;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 0.95em;
+    color: #99004d;
+}
+#voice-btn {
+    display: block;
+    margin: 20px auto;
+    font-size: 1em;
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/index.html">Home</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/product.html">Products</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/cart.html">Cart</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/about.html">About</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/contact.html">Contact</a>
+</nav>
+
+<h2 style="text-align:center; margin-top:20px;">Products</h2>
+
+<div class="container" id="products-container"></div>
+
+<h2 style="text-align:center; margin-top:50px;">Your Cart</h2>
+<div id="cart-container"></div>
+<button id="voice-btn">🎤 Voice Control</button>
+
+<script>
+// Product data
+const products = [
+    {id:1,name:"Wireless Headphones",price:1500,image:"wireless headphones.jpg"},
+    {id:2,name:"Smart Watch",price:2500,image:"smart watch.jpg"},
+    {id:3,name:"Bluetooth Speaker",price:1200,image:"bluetooth speaker.jpg"},
+    {id:4,name:"Coffee Maker",price:3000,image:"coffee maker.jpg"},
+    {id:5,name:"Vacuum Cleaner",price:4000,image:"vacuum cleaner.jpg"},
+    {id:6,name:"LED TV 42 inch",price:22000,image:"led tv 42 inch.jpg"},
+    {id:7,name:"Laptop 15 inch",price:55000,image:"laptop 15 inch.jpg"},
+    {id:8,name:"Gaming Mouse",price:1500,image:"gaming mouse.jpg"},
+    {id:9,name:"Office Chair",price:4500,image:"office chair.jpg"},
+    {id:10,name:"Smartphone",price:18000,image:"smartphone.jpg"},
+    {id:11,name:"Microwave Oven",price:5000,image:"microwave open.jpg"},
+    {id:12,name:"Tablet",price:12000,image:"tablet.jpg"},
+    {id:13,name:"Desk Lamp",price:800,image:"desk lamp.jpg"},
+    {id:14,name:"Refrigerator",price:25000,image:"refrigerator.jpg"},
+    {id:15,name:"Fitness Tracker",price:3000,image:"fitness tracker.jpg"}
+    
+];
+
+// Smart Budget cheaper options
+const cheaperOptions = {
+    "Wireless Headphones": {name:"Budget Headphones", price:1200},
+    "Smart Watch": {name:"Basic Smart Watch", price:2000},
+    "Bluetooth Speaker": {name:"Mini Speaker", price:1000},
+    "Coffee Maker": {name:"Budget Coffee Maker", price:2500},
+    "Vacuum Cleaner": {name:"Compact Vacuum", price:3500},
+    "LED TV 42 inch": {name:"LED TV 32 inch", price:18000},
+    "Laptop 15 inch": {name:"Laptop 14 inch", price:50000},
+    "Gaming Mouse": {name:"Basic Mouse", price:1200},
+    "Office Chair": {name:"Simple Chair", price:3500},
+    "Smartphone": {name:"Budget Smartphone", price:15000}
+};
+
+// Load cart from localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Render products grid
+function renderProducts(){
+    const container = document.getElementById('products-container');
+    container.innerHTML = '';
+    products.forEach(p=>{
+        const div = document.createElement('div');
+        div.className = 'product-card';
+        div.innerHTML = `
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>₹${p.price}</p>
+            <button onclick="addToCart(${p.id})">Add to Cart</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+// Add product to cart
+function addToCart(id){
+    const product = products.find(p=>p.id===id);
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+// Remove product from cart
+function removeFromCart(id){
+    cart = cart.filter(p=>p.id!==id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+// Render cart with Smart Budget suggestions
+function renderCart(){
+    const container = document.getElementById('cart-container');
+    container.innerHTML = '';
+    let total = 0;
+    cart.forEach(item=>{
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `${item.name} - ₹${item.price} <button onclick="removeFromCart(${item.id})">Remove</button>`;
+        container.appendChild(div);
+
+        // Smart Budget Suggestion
+        if(cheaperOptions[item.name] && cheaperOptions[item.name].price < item.price){
+            const sug = cheaperOptions[item.name];
+            const sugDiv = document.createElement('div');
+            sugDiv.className = 'smart-suggestion';
+            sugDiv.innerHTML = `💡 Suggestion: ${item.name} → ${sug.name} (Save ₹${item.price - sug.price})`;
+            container.appendChild(sugDiv);
+        }
+    });
+
+    const summary = document.createElement('div');
+    summary.style.marginTop = '15px';
+    summary.innerHTML = `<strong>Total Items: ${cart.length} | Total Price: ₹${total}</strong>`;
+    container.appendChild(summary);
+}
+
+// Voice control
+function initVoice(){
+    const btn = document.getElementById('voice-btn');
+    if(!('webkitSpeechRecognition' in window)){
+        alert('Your browser does not support voice recognition.');
+        return;
+    }
+    btn.onclick = ()=>{
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.start();
+        recognition.onresult = (event)=>{
+            const command = event.results[0][0].transcript.toLowerCase();
+            console.log('Voice command:', command);
+            if(command.startsWith('add ')){
+                const prodName = command.replace('add ','').trim();
+                const product = products.find(p=>p.name.toLowerCase()===prodName);
+                if(product) addToCart(product.id);
+            } else if(command.startsWith('remove ')){
+                const prodName = command.replace('remove ','').trim();
+                const product = products.find(p=>p.name.toLowerCase()===prodName);
+                if(product) removeFromCart(product.id);
+            }
+        };
+    };
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', ()=>{
+    renderProducts();
+    renderCart();
+    initVoice();
+});
+</script>
+
+</body>
+</html>

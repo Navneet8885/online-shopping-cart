@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact | Smart Budget Cart</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ff66b3; /* Pink page background */
+}
+
+header {
+    background: #ff3385;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ffe6f0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.contact-card {
+    background: #ffffff; /* White card for form */
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-card h2 {
+    color: #ff3385;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.contact-card input, .contact-card textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ff66b3;
+}
+
+.contact-card button {
+    width: 100%;
+    padding: 12px;
+    background: #ff66b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-card button:hover {
+    background: #ff3385;
+    transform: scale(1.05);
+}
+
+footer {
+    background: #ff3385;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Smart Budget Cart</h1>
+<nav>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/index.html">Home</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/product.html">Products</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/cart.html">Cart</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/about.html">About</a>
+<a href="file:///C:/Users/Navneet%20Kaur/Documents/smart%20budget%20cart/product.html">Contact</a>
+
+</header>
+
+<div class="container">
+<div class="contact-card">
+<h2>Contact Us</h2>
+<form action="#" method="post">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</div>
+
+<footer>
+<p>© 2025 Smart Budget Cart. All rights reserved.</p>
+</footer>
+</body>
+</html>
